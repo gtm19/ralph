@@ -16,12 +16,16 @@ create_package <- function(
 
   # renv: ----
   if (use_renv) {
-    init_renv() && usethis::ui_done("renv successfully initialised")
+    usethis::ui_info("Initialising renv")
+    init_renv()
+    usethis::ui_done("renv successfully initialised")
   }
 
   # testthat: ----
-  if(use_testthat) {
-    usethis::use_testthat()
+  if (use_testthat) {
+    usethis::ui_info("Initialising testthat")
+    init_testthat()
+    usethis::ui_done("testthat successfully initialised")
   }
 
   # Makefile: ----
@@ -31,15 +35,20 @@ create_package <- function(
       from = makefile_loc,
       to = "."
     )
+    usethis::ui_done("Initial Makefile created")
   }
 
   # git: ----
   if (use_git) {
-    usethis::use_git()
+    init_git()
+    usethis::ui_done("git initialised")
   }
 
   # readme: ----
-  if (
+  if ({
+    usethis::ui_info(
+      "Initialising README.{readme}"
+    )
     init_readme(
       path = path,
       use_renv = use_renv,
@@ -47,45 +56,9 @@ create_package <- function(
       template = "package-README",
       package = "ralph"
     )
-  ) {
+  }) {
     usethis::ui_done("README.{readme} successfully initialised")
   }
-
-  invisible(TRUE)
-}
-
-init_renv <- function() {
-  usethis::ui_info(
-    "Initialising renv"
-  )
-
-  renv::init()
-
-  invisible(TRUE)
-}
-
-init_readme <- function(
-  path,
-  use_renv,
-  readme,
-  template = "package-README",
-  package = "ralph"
-) {
-  readme_data <- list(
-    Package = basename(path),
-    Renv = use_renv,
-    Rmd = identical(readme, "Rmd"),
-    Dev = use_renv # TODO: add Makefile to this (and section to readme template)
-  )
-
-  usethis::use_template(
-    template = template,
-    save_as = glue::glue("{path}/README.{readme}"),
-    data = readme_data,
-    open = FALSE,
-    ignore = identical(readme, "Rmd"),
-    package = "ralph"
-  )
 
   invisible(TRUE)
 }
