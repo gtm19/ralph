@@ -4,5 +4,6 @@ init_renv <- function() {
 }
 
 uses_renv <- function() {
-  length(renv::status()$library) > 0
+  capture.output(lib_length <- length(renv::status()$library))
+  lib_length > 0
 }
