@@ -1,3 +1,8 @@
+#' Create a package, optionally initialising useful stuff
+#' 
+#' @inheritParams usethis::create_package
+#' 
+#' @export
 create_package <- function(
   path,
   use_renv = TRUE,
@@ -53,8 +58,7 @@ create_package <- function(
       path = path,
       use_renv = use_renv,
       readme = readme,
-      template = "package-README",
-      package = "ralph"
+      template = "package-README"
     )
   }) {
     usethis::ui_done("README.{readme} successfully initialised")
