@@ -32,11 +32,11 @@ install.packages("{{{ Package }}}")
 
 {{#Dev}}
 ## Development Tools
-
 {{#Renv}}
+
 ### `renv`
 
-This project makes use of the `renv` package to manage its dependencies.
+This project makes use of the [`renv` package](https://rstudio.github.io/renv/articles/renv.html) to manage its dependencies.
 
 As a developer, when working on this project, after pulling the repo from GitHub, you should run the following in the R console in order to (re)install the dependencies:
 
@@ -56,7 +56,36 @@ At any point, if you want to see whether your project library or lockfile are ou
 renv::status()
 ```
 {{/Renv}}
+{{#Makefile}}
 
+### Makefile
+
+During development, certain repetitive tasks can be done more simply by making use of the [`Makefile` in this project](https://www.gnu.org/software/make/).
+
+For example, to run R CMD check, you can run (in the terminal):
+
+```sh
+make check
+```
+
+Or to knit your `README.Rmd` file to `README.md`, you can run:
+
+```sh
+make readme
+```
+
+Check out the `Makefile` itself for more details.
+{{/Makefile}}
+{{#Tests}}
+
+### `testthat`
+
+This project uses [`testthat` to implement unit tests](https://testthat.r-lib.org/). Any tests created in the `tests/testthat` directory are automatically run as part of R CMD check.
+
+When adding functions to the {{{ Package }}} package, as a developer you should add unit tests where appropriate, to ensure that they work as anticipated, and that key functionality is not accidentally removed during development.
+
+You can read more about testing in the [Testing section of the R Packages book](https://r-pkgs.org/tests.html). `testthat` and its reference documentation can be found [here](https://testthat.r-lib.org/reference/index.html).
+{{/Tests}}
 {{/Dev}}
 
 ## Example
