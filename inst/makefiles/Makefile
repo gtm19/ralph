@@ -41,3 +41,4 @@ README.md: README.Rmd
 	Rscript \
 	-e 'if (!requireNamespace("knitr")) install.packages("knitr")' \
 	-e 'knitr::knit("$<", output = "$@")'
+	
