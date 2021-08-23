@@ -37,6 +37,7 @@ clean:
 
 readme: README.md
 
+# TODO: make this not break if the README.Rmd does not exist
 README.md: README.Rmd
 	Rscript \
 	-e 'if (!requireNamespace("knitr")) install.packages("knitr")' \
