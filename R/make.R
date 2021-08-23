@@ -4,6 +4,14 @@ init_make <- function() {
     from = makefile_loc,
     to = "."
   )
+
+  # Add Makefile to buildignore
+  usethis::use_build_ignore("Makefile")
+
+  # Add tar.gz file created by make build to gitignore
+  usethis::use_git_ignore("*.tar.gz")
+
+  invisible(TRUE)
 }
 
 uses_make <- function(base_path = proj_get()) {
