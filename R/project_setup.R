@@ -1,7 +1,12 @@
 #' Create a package, optionally initialising useful stuff
-#' 
+#'
 #' @inheritParams usethis::create_package
-#' 
+#'
+#' @param use_renv,use_git,use_testthat,use_makefile TRUE/FALSE: do you want
+#' to use any/all of these things in your project?
+#' @param readme character. Either "md" or "Rmd" - determines the file 
+#' extension of your README file
+#'
 #' @export
 create_package <- function(
   path,

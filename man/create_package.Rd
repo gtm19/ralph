@@ -16,6 +16,12 @@ create_package(
 \arguments{
 \item{path}{A path. If it exists, it is used. If it does not exist, it is
 created, provided that the parent path exists.}
+
+\item{use_renv, use_git, use_testthat, use_makefile}{TRUE/FALSE: do you want
+to use any/all of these things in your project?}
+
+\item{readme}{character. Either "md" or "Rmd" - determines the file
+extension of your README file}
 }
 \description{
 Create a package, optionally initialising useful stuff
